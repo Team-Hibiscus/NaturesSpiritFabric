@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/button_pressed",
-  "textures": {
-    "texture": "natures_spirit:block/wisteria_planks"
-  }
-}

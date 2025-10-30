@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "natures_spirit:block/willow_planks",
-    "side": "natures_spirit:block/willow_planks",
-    "top": "natures_spirit:block/willow_planks"
-  }
-}

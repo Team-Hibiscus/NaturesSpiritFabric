@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "natures_spirit:block/sugi_planks",
-    "side": "natures_spirit:block/sugi_planks",
-    "top": "natures_spirit:block/sugi_planks"
-  }
-}

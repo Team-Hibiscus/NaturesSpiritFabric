@@ -6,7 +6,6 @@ import net.hibiscus.naturespirit.NatureSpirit;
 import net.hibiscus.naturespirit.blocks.CoconutBlock;
 import net.hibiscus.naturespirit.blocks.OliveBranchBlock;
 import net.hibiscus.naturespirit.blocks.SproutingCoconutBlock;
-import net.hibiscus.naturespirit.datagen.NSConfiguredFeatures;
 import net.hibiscus.naturespirit.items.CoconutHalfItem;
 import net.hibiscus.naturespirit.registration.sets.WoodSet;
 import net.hibiscus.naturespirit.registration.sets.WoodSet.WoodPreset;

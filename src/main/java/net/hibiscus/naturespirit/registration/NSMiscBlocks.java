@@ -10,7 +10,6 @@ import net.hibiscus.naturespirit.NatureSpirit;
 import net.hibiscus.naturespirit.blocks.*;
 import net.hibiscus.naturespirit.blocks.block_entities.PizzaBlockEntity;
 import net.hibiscus.naturespirit.config.NSConfig;
-import net.hibiscus.naturespirit.datagen.NSConfiguredFeatures;
 import net.hibiscus.naturespirit.items.AzollaItem;
 import net.hibiscus.naturespirit.items.CheeseArrowItem;
 import net.hibiscus.naturespirit.items.DesertTurnipItem;

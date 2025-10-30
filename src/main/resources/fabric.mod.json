@@ -20,9 +20,6 @@
     ],
     "terrablender": [
       "net.hibiscus.naturespirit.terrablender.NSTerraBlender"
-    ],
-    "fabric-datagen": [
-      "net.hibiscus.naturespirit.datagen.NSDataGen"
     ]
   },
   "accessWidener": "natures_spirit.accesswidener",

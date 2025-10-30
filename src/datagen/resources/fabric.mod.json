@@ -1,0 +1,13 @@
+{
+    "schemaVersion": 1,
+    "id": "natures_spirit_datagen",
+    "version": "1.0.0",
+    "name": "Nature's Spirit Datagen",
+    "license": "All Rights Reserved",
+    "environment": "client",
+    "entrypoints": {
+        "fabric-datagen": [
+            "net.hibiscus.naturespirit.datagen.NSDataGen"
+        ]
+    }
+}

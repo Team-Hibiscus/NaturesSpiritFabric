@@ -1,6 +1,0 @@
-{
-  "parent": "natures_spirit:block/tall_large_cross",
-  "textures": {
-    "cross": "natures_spirit:block/bluebell"
-  }
-}
