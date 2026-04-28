@@ -165,6 +165,11 @@ class NSBlockLootTableProvider extends FabricBlockLootTableProvider {
                     .builder(flowerbed).properties(net.minecraft.predicate.StatePredicate.Builder.create().exactMatch(AzollaBlock.FLOWER_AMOUNT, flowerAmount)))))).conditionally(this.createWithShearsOrSilkTouchCondition()));
   }
 
+  private void addShearsOnlyVinePlantDrop(Block vine, Block vinePlant) {
+    this.addDrop(vine, BlockLootTableGenerator::dropsWithShears);
+    this.addDrop(vinePlant, (block) -> BlockLootTableGenerator.dropsWithShears(vine));
+  }
+
   private void addTreeTable(HashMap<String, Block[]> saplings, HashMap<String, Block> leaves) {
     for (String i : leaves.keySet()) {
       Block leavesType = leaves.get(i);
@@ -206,11 +211,11 @@ class NSBlockLootTableProvider extends FabricBlockLootTableProvider {
 
     this.addDrop(CATTAIL, (block) -> this.dropsWithProperty(block, TallPlantBlock.HALF, DoubleBlockHalf.LOWER));
 
-    addVinePlantDrop(NSWoods.WISTERIA.getWhiteVines(), NSWoods.WISTERIA.getWhiteVinesPlant());
-    addVinePlantDrop(NSWoods.WISTERIA.getBlueVines(), NSWoods.WISTERIA.getBlueVinesPlant());
-    addVinePlantDrop(NSWoods.WISTERIA.getPurpleVines(), NSWoods.WISTERIA.getPurpleVinesPlant());
-    addVinePlantDrop(NSWoods.WISTERIA.getPinkVines(), NSWoods.WISTERIA.getPinkVinesPlant());
-    addVinePlantDrop(NSWoods.WILLOW.getVines(), NSWoods.WILLOW.getVinesPlant());
+    addShearsOnlyVinePlantDrop(NSWoods.WISTERIA.getWhiteVines(), NSWoods.WISTERIA.getWhiteVinesPlant());
+    addShearsOnlyVinePlantDrop(NSWoods.WISTERIA.getBlueVines(), NSWoods.WISTERIA.getBlueVinesPlant());
+    addShearsOnlyVinePlantDrop(NSWoods.WISTERIA.getPurpleVines(), NSWoods.WISTERIA.getPurpleVinesPlant());
+    addShearsOnlyVinePlantDrop(NSWoods.WISTERIA.getPinkVines(), NSWoods.WISTERIA.getPinkVinesPlant());
+    addShearsOnlyVinePlantDrop(NSWoods.WILLOW.getVines(), NSWoods.WILLOW.getVinesPlant());
     this.addDrop(NSWoods.FIR.getFrostyLeaves(), leavesDrops(NSWoods.FIR.getFrostyLeaves(), NSWoods.FIR.getSapling(), SAPLING_DROP_CHANCE));
     this.addDrop(NSWoods.REDWOOD.getFrostyLeaves(), leavesDrops(NSWoods.REDWOOD.getFrostyLeaves(), NSWoods.REDWOOD.getSapling(), SAPLING_DROP_CHANCE));
     this.addDrop(ALLUAUDIA);

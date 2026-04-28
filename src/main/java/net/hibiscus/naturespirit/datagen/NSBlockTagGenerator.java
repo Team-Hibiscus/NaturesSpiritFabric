@@ -261,7 +261,22 @@ public class NSBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         LARGE_LUSH_FERN,
         LUSH_FERN,
         TALL_MELIC_GRASS,
-        MELIC_GRASS, AUREATE_SUCCULENT, SAGE_SUCCULENT, FOAMY_SUCCULENT, IMPERIAL_SUCCULENT, REGAL_SUCCULENT
+        MELIC_GRASS,
+        NSWoods.WISTERIA.getBlueVines(),
+        NSWoods.WISTERIA.getBlueVinesPlant(),
+        NSWoods.WISTERIA.getWhiteVines(),
+        NSWoods.WISTERIA.getWhiteVinesPlant(),
+        NSWoods.WISTERIA.getPinkVines(),
+        NSWoods.WISTERIA.getPinkVinesPlant(),
+        NSWoods.WISTERIA.getPurpleVines(),
+        NSWoods.WISTERIA.getPurpleVinesPlant(),
+        NSWoods.WILLOW.getVinesPlant(),
+        NSWoods.WILLOW.getVines(),
+        AUREATE_SUCCULENT,
+        SAGE_SUCCULENT,
+        FOAMY_SUCCULENT,
+        IMPERIAL_SUCCULENT,
+        REGAL_SUCCULENT
     );
     getOrCreateTagBuilder(BlockTags.SAND).add(PINK_SAND, SANDY_SOIL);
     getOrCreateTagBuilder(BlockTags.SMELTS_TO_GLASS).add(PINK_SAND);
