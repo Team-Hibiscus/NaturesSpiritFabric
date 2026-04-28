@@ -235,7 +235,8 @@ public class NSConfiguredFeatures {
               BlockStateProvider.of(NSWoods.MAPLE.getRedLeaves()),
               new MapleFoliagePlacer(ConstantIntProvider.create(4), ConstantIntProvider.create(0), ConstantIntProvider.create(5), 0.26666667F, 0.53333334F),
               new TwoLayersFeatureSize(1, 0, 2)
-      ).ignoreVines().decorators(ImmutableList.of(new MapleGroundTreeDecorator(SimpleBlockStateProvider.of(Blocks.PODZOL), SimpleBlockStateProvider.of(Blocks.COARSE_DIRT)))).build());
+      ).ignoreVines().decorators(ImmutableList.of(new MapleGroundTreeDecorator(SimpleBlockStateProvider.of(Blocks.PODZOL), SimpleBlockStateProvider.of(Blocks.COARSE_DIRT)),
+              new BeehiveTreeDecorator(0.02F))).build());
       register(context, ORANGE_MAPLE_TREE, Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(NSWoods.MAPLE.getLog()),
               new MapleTrunkPlacer(
                       9,
@@ -252,7 +253,8 @@ public class NSConfiguredFeatures {
               BlockStateProvider.of(NSWoods.MAPLE.getOrangeLeaves()),
               new MapleFoliagePlacer(ConstantIntProvider.create(4), ConstantIntProvider.create(0), ConstantIntProvider.create(5), 0.26666667F, 0.53333334F),
               new TwoLayersFeatureSize(1, 0, 2)
-      ).ignoreVines().decorators(ImmutableList.of(new MapleGroundTreeDecorator(SimpleBlockStateProvider.of(Blocks.PODZOL), SimpleBlockStateProvider.of(Blocks.COARSE_DIRT)))).build());
+      ).ignoreVines().decorators(ImmutableList.of(new MapleGroundTreeDecorator(SimpleBlockStateProvider.of(Blocks.PODZOL), SimpleBlockStateProvider.of(Blocks.COARSE_DIRT)),
+              new BeehiveTreeDecorator(0.02F))).build());
       register(context, YELLOW_MAPLE_TREE, Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(NSWoods.MAPLE.getLog()),
               new MapleTrunkPlacer(
                       9,
@@ -269,7 +271,8 @@ public class NSConfiguredFeatures {
               BlockStateProvider.of(NSWoods.MAPLE.getYellowLeaves()),
               new MapleFoliagePlacer(ConstantIntProvider.create(4), ConstantIntProvider.create(0), ConstantIntProvider.create(5), 0.26666667F, 0.53333334F),
               new TwoLayersFeatureSize(1, 0, 2)
-      ).ignoreVines().decorators(ImmutableList.of(new MapleGroundTreeDecorator(SimpleBlockStateProvider.of(Blocks.PODZOL), SimpleBlockStateProvider.of(Blocks.COARSE_DIRT)))).build());
+      ).ignoreVines().decorators(ImmutableList.of(new MapleGroundTreeDecorator(SimpleBlockStateProvider.of(Blocks.PODZOL), SimpleBlockStateProvider.of(Blocks.COARSE_DIRT)),
+              new BeehiveTreeDecorator(0.02F))).build());
 
       register(context,
               MAPLE_SPAWN,
@@ -388,7 +391,7 @@ public class NSConfiguredFeatures {
               new NSSimpleBlockStateProvider(NSWoods.WISTERIA.getPartWhiteLeaves().getDefaultState()),
               new NSSimpleBlockStateProvider(NSWoods.WISTERIA.getWhiteLeaves().getDefaultState()),
               2
-      ))).ignoreVines().build());
+      ), new BeehiveTreeDecorator(0.05F))).ignoreVines().build());
 
       register(context, PINK_WISTERIA_TREE, Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(NSWoods.WISTERIA.getLog()),
               new WisteriaTrunkPlacer(7,
@@ -408,7 +411,7 @@ public class NSConfiguredFeatures {
               new NSSimpleBlockStateProvider(NSWoods.WISTERIA.getPartPinkLeaves().getDefaultState()),
               new NSSimpleBlockStateProvider(NSWoods.WISTERIA.getPinkLeaves().getDefaultState()),
               2
-      ))).ignoreVines().build());
+      ), new BeehiveTreeDecorator(0.05F))).ignoreVines().build());
 
       register(context, BLUE_WISTERIA_TREE, Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(NSWoods.WISTERIA.getLog()),
               new WisteriaTrunkPlacer(7,
@@ -428,7 +431,7 @@ public class NSConfiguredFeatures {
               new NSSimpleBlockStateProvider(NSWoods.WISTERIA.getPartBlueLeaves().getDefaultState()),
               new NSSimpleBlockStateProvider(NSWoods.WISTERIA.getBlueLeaves().getDefaultState()),
               2
-      ))).ignoreVines().build());
+      ), new BeehiveTreeDecorator(0.05F))).ignoreVines().build());
 
       register(context, PURPLE_WISTERIA_TREE, Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(NSWoods.WISTERIA.getLog()),
               new WisteriaTrunkPlacer(7,
@@ -448,7 +451,7 @@ public class NSConfiguredFeatures {
               new NSSimpleBlockStateProvider(NSWoods.WISTERIA.getPartPurpleLeaves().getDefaultState()),
               new NSSimpleBlockStateProvider(NSWoods.WISTERIA.getPurpleLeaves().getDefaultState()),
               2
-      ))).ignoreVines().build());
+      ), new BeehiveTreeDecorator(0.05F))).ignoreVines().build());
 
       register(
               context,
