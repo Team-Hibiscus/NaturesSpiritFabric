@@ -58,7 +58,6 @@ public class NSTags {
     public static final TagKey<Item> SANDSTONE_STAIRS = createTag("sandstone/stairs");
     public static final TagKey<Item> SANDSTONE_WALLS = createTag("sandstone/walls");
     public static final TagKey<Item> STONES = createTag("stones");
-    public static final TagKey<Item> STRIPPED_LOGS = createTag("stripped_logs");
     public static final TagKey<Item> STRIPPED_WOODS = createTag("stripped_woods");
 
     private static TagKey<Item> createTag(String name) {
@@ -111,7 +110,6 @@ public class NSTags {
     public static final TagKey<Block> SANDSTONE_STAIRS = createTag("sandstone/stairs");
     public static final TagKey<Block> SANDSTONE_WALLS = createTag("sandstone/walls");
     public static final TagKey<Block> STONES = createTag("stones");
-    public static final TagKey<Block> STRIPPED_LOGS = createTag("stripped_logs");
     public static final TagKey<Block> STRIPPED_WOODS = createTag("stripped_woods");
 
     private static TagKey<Block> createTag(String name) {

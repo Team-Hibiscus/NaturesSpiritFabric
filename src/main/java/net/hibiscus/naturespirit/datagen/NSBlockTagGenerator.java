@@ -271,7 +271,6 @@ public class NSBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
     getOrCreateTagBuilder(NSTags.CommonBlocks.SANDSTONE_SLABS).add(PINK_SANDSTONE_SLAB, CUT_PINK_SANDSTONE_SLAB, SMOOTH_PINK_SANDSTONE_SLAB);
     getOrCreateTagBuilder(NSTags.CommonBlocks.SANDSTONE_STAIRS).add(PINK_SANDSTONE_STAIRS, SMOOTH_PINK_SANDSTONE_STAIRS);
     getOrCreateTagBuilder(NSTags.CommonBlocks.SANDSTONE_WALLS).add(PINK_SANDSTONE_WALL);
-    getOrCreateTagBuilder(NSTags.CommonBlocks.STRIPPED_LOGS).forceAddTag(Blocks.STRIPPED_LOGS);
     getOrCreateTagBuilder(NSTags.CommonBlocks.STRIPPED_WOODS).forceAddTag(Blocks.STRIPPED_WOOD);
     getOrCreateTagBuilder(BlockTags.SMELTS_TO_GLASS).add(PINK_SAND);
     getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE).add(PINK_SAND, SANDY_SOIL);

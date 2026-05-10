@@ -62,7 +62,6 @@ public class NSItemTagGenerator extends FabricTagProvider.ItemTagProvider {
     copy(NSTags.CommonBlocks.SANDSTONE_SLABS, NSTags.CommonItems.SANDSTONE_SLABS);
     copy(NSTags.CommonBlocks.SANDSTONE_STAIRS, NSTags.CommonItems.SANDSTONE_STAIRS);
     copy(NSTags.CommonBlocks.SANDSTONE_WALLS, NSTags.CommonItems.SANDSTONE_WALLS);
-    copy(NSTags.CommonBlocks.STRIPPED_LOGS, NSTags.CommonItems.STRIPPED_LOGS);
     copy(NSTags.CommonBlocks.STRIPPED_WOODS, NSTags.CommonItems.STRIPPED_WOODS);
     copy(BlockTags.LEAVES, ItemTags.LEAVES);
     copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
