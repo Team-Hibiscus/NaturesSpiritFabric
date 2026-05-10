@@ -13,16 +13,27 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Debug(export = true) @Mixin(AxeItem.class) public class AxeItemMixin {
 
-   @Inject(method = "useOnBlock", at = @At("HEAD"))
-   private void isValid(ItemUsageContext context, CallbackInfoReturnable <ActionResult> cir) {
-      ActionResult result = UseBlockCallback.EVENT.invoker().interact(context.getPlayer(),
-              context.getWorld(),
-              context.getHand(),
-              new BlockHitResult(context.getHitPos(), context.getSide(), context.getBlockPos(), context.hitsInsideBlock())
-      );
+   private static final ThreadLocal <Boolean> natures_spirit$invokingUseBlockCallback = ThreadLocal.withInitial(() -> false);
 
-      if(result == ActionResult.SUCCESS) {
-         cir.cancel();
+   @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
+   private void isValid(ItemUsageContext context, CallbackInfoReturnable <ActionResult> cir) {
+      if(natures_spirit$invokingUseBlockCallback.get()) {
+         return;
+      }
+
+      natures_spirit$invokingUseBlockCallback.set(true);
+      try {
+         ActionResult result = UseBlockCallback.EVENT.invoker().interact(context.getPlayer(),
+                 context.getWorld(),
+                 context.getHand(),
+                 new BlockHitResult(context.getHitPos(), context.getSide(), context.getBlockPos(), context.hitsInsideBlock())
+         );
+
+         if(result == ActionResult.SUCCESS) {
+            cir.setReturnValue(result);
+         }
+      } finally {
+         natures_spirit$invokingUseBlockCallback.set(false);
       }
    }
 }
