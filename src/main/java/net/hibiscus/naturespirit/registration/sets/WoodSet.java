@@ -927,7 +927,7 @@ public class WoodSet {
 
   private Block createVinesLeavesBlock(Block vinesPlantBlock, Block vinesTipBlock) {
     Block block = createBlockWithItem(getName() + "_leaves",
-        new VinesLeavesBlock(AbstractBlock.Settings.create().strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.GRASS).nonOpaque()
+        new VinesLeavesBlock(AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.GRASS).nonOpaque()
             .allowsSpawning(Blocks::canSpawnOnLeaves).suffocates(Blocks::never).blockVision(Blocks::never).burnable().pistonBehavior(PistonBehavior.DESTROY)
             .solidBlock(Blocks::never), vinesPlantBlock, vinesTipBlock));
     CompostingChanceRegistry.INSTANCE.add(block, 0.3F);
@@ -939,7 +939,7 @@ public class WoodSet {
 
   private Block createVinesLeavesBlock(String prefix, Block vinesPlantBlock, Block vinesTipBlock) {
     Block block = createBlockWithItem(prefix + getName() + "_leaves",
-        new VinesLeavesBlock(AbstractBlock.Settings.create().strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.GRASS).nonOpaque()
+        new VinesLeavesBlock(AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.GRASS).nonOpaque()
             .allowsSpawning(Blocks::canSpawnOnLeaves).suffocates(Blocks::never).blockVision(Blocks::never).burnable()
             .pistonBehavior(PistonBehavior.DESTROY).solidBlock(Blocks::never), vinesPlantBlock, vinesTipBlock));
     CompostingChanceRegistry.INSTANCE.add(block, 0.3F);
