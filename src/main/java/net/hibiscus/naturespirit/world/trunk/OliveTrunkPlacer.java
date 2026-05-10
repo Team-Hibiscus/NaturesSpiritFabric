@@ -8,6 +8,7 @@ package net.hibiscus.naturespirit.world.trunk;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.hibiscus.naturespirit.blocks.BranchingTrunkBlock;
 import net.hibiscus.naturespirit.registration.NSWorldGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -27,8 +28,11 @@ import net.minecraft.world.gen.foliage.FoliagePlacer.TreeNode;
 import net.minecraft.world.gen.trunk.TrunkPlacer;
 import net.minecraft.world.gen.trunk.TrunkPlacerType;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 public class OliveTrunkPlacer extends TrunkPlacer {
    public static final Codec <OliveTrunkPlacer> CODEC = RecordCodecBuilder.create((instance) -> {
@@ -61,6 +65,7 @@ public class OliveTrunkPlacer extends TrunkPlacer {
 
    public List <TreeNode> generate(TestableWorld world, BiConsumer <BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config) {
       List <TreeNode> list = Lists.newArrayList();
+      Set <BlockPos> generatedTrunkPositions = new HashSet<>();
       Mutable mutable = new Mutable();
       Mutable mutable2 = new Mutable();
       boolean bl = random.nextBoolean();
@@ -83,20 +88,20 @@ public class OliveTrunkPlacer extends TrunkPlacer {
          BlockPos blockPos = bl && i >= 2 ? (bl2 && trunkOffset != trunkOffset2 ? pos3 : pos2) : mutablePos1;
 
          if(bl && i == 2 && !bl3) {
-            this.getAndSetState(world, replacer, random, mutablePos1, config);
+            this.getAndSetTrunkState(world, replacer, random, mutablePos1, config, generatedTrunkPositions);
          }
-         if(this.getAndSetState(world, replacer, random, blockPos, config) && i < height - 1 && random.nextFloat() < this.placeBranchPerLogProbability) {
+         if(this.getAndSetTrunkState(world, replacer, random, blockPos, config, generatedTrunkPositions) && i < height - 1 && random.nextFloat() < this.placeBranchPerLogProbability) {
             int k = this.extraBranchLength.get(random);
             int l = Math.max(0, k - this.extraBranchLength.get(random) - 1);
             int m = height + i - 7;
             if(i > 2) {
-               this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction, l, m, i);
+               this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction, l, m, i, generatedTrunkPositions);
 
                if(random.nextFloat() < this.placeBranchPerLogProbability - 0.65) {
-                  this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction2, l, Math.round(m / 2), i);
+                  this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction2, l, Math.round(m / 2), i, generatedTrunkPositions);
                }
                if(random.nextFloat() < this.placeBranchPerLogProbability - 0.85) {
-                  this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction3, l, Math.round(m / 2), i);
+                  this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction3, l, Math.round(m / 2), i, generatedTrunkPositions);
                }
             }
          }
@@ -117,20 +122,20 @@ public class OliveTrunkPlacer extends TrunkPlacer {
             BlockPos blockPos = i >= 2 ? bl2 && trunkOffset.getOpposite() != trunkOffset2.getOpposite() ? pos3 : pos2 : mutablePos1.offset(randomInt2 < 0 ? Direction.UP : Direction.DOWN, randomInt2);
 
             if(i == 2) {
-               this.getAndSetState(world, replacer, random, mutablePos1.offset(randomInt2 < 0 ? Direction.UP : Direction.DOWN, randomInt2), config);
+               this.getAndSetTrunkState(world, replacer, random, mutablePos1.offset(randomInt2 < 0 ? Direction.UP : Direction.DOWN, randomInt2), config, generatedTrunkPositions);
             }
-            if(this.getAndSetState(world, replacer, random, blockPos, config) && i < height - 1 && random.nextFloat() < this.placeBranchPerLogProbability) {
+            if(this.getAndSetTrunkState(world, replacer, random, blockPos, config, generatedTrunkPositions) && i < height - 1 && random.nextFloat() < this.placeBranchPerLogProbability) {
                int k = this.extraBranchLength.get(random);
                int l = Math.max(0, k - this.extraBranchLength.get(random) - 1);
                int m = height + i - 7;
                if(i > 2) {
-                  this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction, l, m, i);
+                  this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction, l, m, i, generatedTrunkPositions);
 
                   if(random.nextFloat() < this.placeBranchPerLogProbability - 0.65) {
-                     this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction2, l, Math.round(m / 2), i);
+                     this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction2, l, Math.round(m / 2), i, generatedTrunkPositions);
                   }
                   if(random.nextFloat() < this.placeBranchPerLogProbability - 0.85) {
-                     this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction3, l, Math.round(m / 2), i);
+                     this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction3, l, Math.round(m / 2), i, generatedTrunkPositions);
                   }
                }
             }
@@ -140,10 +145,11 @@ public class OliveTrunkPlacer extends TrunkPlacer {
          }
       }
 
+      this.updateGeneratedConnections(replacer, random, config, generatedTrunkPositions);
       return list;
    }
 
-   private void generateExtraBranch(TestableWorld world, BiConsumer <BlockPos, BlockState> replacer, Random random, int height, TreeFeatureConfig config, List <TreeNode> nodes, BlockPos pos, int yOffset, Direction direction, int length, int steps, int b) {
+   private void generateExtraBranch(TestableWorld world, BiConsumer <BlockPos, BlockState> replacer, Random random, int height, TreeFeatureConfig config, List <TreeNode> nodes, BlockPos pos, int yOffset, Direction direction, int length, int steps, int b, Set <BlockPos> generatedTrunkPositions) {
       int i = yOffset + length;
       int j = pos.getX();
       int k = pos.getZ();
@@ -162,9 +168,9 @@ public class OliveTrunkPlacer extends TrunkPlacer {
                k += direction.getOffsetZ();
             }
             i = m;
-            if(this.getAndSetState(world, replacer, random, mutable.set(j, m, k), config, blockState -> {
+            if(this.getAndSetTrunkState(world, replacer, random, mutable.set(j, m, k), config, blockState -> {
                return blockState.withIfExists(PillarBlock.AXIS, direction.getAxis());
-            })) {
+            }, generatedTrunkPositions)) {
                i = m + 1;
             }
          }
@@ -176,6 +182,38 @@ public class OliveTrunkPlacer extends TrunkPlacer {
          nodes.add(new TreeNode(blockPos, 0, false));
       }
 
+   }
+
+   private boolean getAndSetTrunkState(TestableWorld world, BiConsumer <BlockPos, BlockState> replacer, Random random, BlockPos pos, TreeFeatureConfig config, Set <BlockPos> generatedTrunkPositions) {
+      boolean placed = this.getAndSetState(world, replacer, random, pos, config);
+      if(placed) {
+         generatedTrunkPositions.add(pos.toImmutable());
+      }
+      return placed;
+   }
+
+   private boolean getAndSetTrunkState(TestableWorld world, BiConsumer <BlockPos, BlockState> replacer, Random random, BlockPos pos, TreeFeatureConfig config, Function <BlockState, BlockState> trunkBlockStateDecorator, Set <BlockPos> generatedTrunkPositions) {
+      boolean placed = this.getAndSetState(world, replacer, random, pos, config, trunkBlockStateDecorator);
+      if(placed) {
+         generatedTrunkPositions.add(pos.toImmutable());
+      }
+      return placed;
+   }
+
+   private void updateGeneratedConnections(BiConsumer <BlockPos, BlockState> replacer, Random random, TreeFeatureConfig config, Set <BlockPos> generatedTrunkPositions) {
+      for(BlockPos pos : generatedTrunkPositions) {
+         BlockState state = config.trunkProvider.get(random, pos);
+         if(state.getBlock() instanceof BranchingTrunkBlock) {
+            replacer.accept(pos, state
+                    .withIfExists(BranchingTrunkBlock.DOWN, generatedTrunkPositions.contains(pos.down()))
+                    .withIfExists(BranchingTrunkBlock.UP, generatedTrunkPositions.contains(pos.up()))
+                    .withIfExists(BranchingTrunkBlock.NORTH, generatedTrunkPositions.contains(pos.north()))
+                    .withIfExists(BranchingTrunkBlock.EAST, generatedTrunkPositions.contains(pos.east()))
+                    .withIfExists(BranchingTrunkBlock.SOUTH, generatedTrunkPositions.contains(pos.south()))
+                    .withIfExists(BranchingTrunkBlock.WEST, generatedTrunkPositions.contains(pos.west()))
+            );
+         }
+      }
    }
 
    protected boolean canReplace(TestableWorld world, BlockPos pos) {
