@@ -49,6 +49,23 @@ public class NSTags {
     }
   }
 
+  public static class CommonItems {
+
+    public static final TagKey<Item> COBBLESTONES = createTag("cobblestones");
+    public static final TagKey<Item> SANDS = createTag("sands");
+    public static final TagKey<Item> SANDSTONE_BLOCKS = createTag("sandstone/blocks");
+    public static final TagKey<Item> SANDSTONE_SLABS = createTag("sandstone/slabs");
+    public static final TagKey<Item> SANDSTONE_STAIRS = createTag("sandstone/stairs");
+    public static final TagKey<Item> SANDSTONE_WALLS = createTag("sandstone/walls");
+    public static final TagKey<Item> STONES = createTag("stones");
+    public static final TagKey<Item> STRIPPED_LOGS = createTag("stripped_logs");
+    public static final TagKey<Item> STRIPPED_WOODS = createTag("stripped_woods");
+
+    private static TagKey<Item> createTag(String name) {
+      return TagKey.of(RegistryKeys.ITEM, Identifier.of("c", name));
+    }
+  }
+
   public static class EntityTypes {
 
     public static final TagKey<EntityType<?>> CANT_SUCCULENT_SLOWED = createTag("cant_succulent_slowed");
@@ -82,6 +99,23 @@ public class NSTags {
 
     private static TagKey<Block> createTag(String name) {
       return TagKey.of(RegistryKeys.BLOCK, Identifier.of(NatureSpirit.MOD_ID, name));
+    }
+  }
+
+  public static class CommonBlocks {
+
+    public static final TagKey<Block> COBBLESTONES = createTag("cobblestones");
+    public static final TagKey<Block> SANDS = createTag("sands");
+    public static final TagKey<Block> SANDSTONE_BLOCKS = createTag("sandstone/blocks");
+    public static final TagKey<Block> SANDSTONE_SLABS = createTag("sandstone/slabs");
+    public static final TagKey<Block> SANDSTONE_STAIRS = createTag("sandstone/stairs");
+    public static final TagKey<Block> SANDSTONE_WALLS = createTag("sandstone/walls");
+    public static final TagKey<Block> STONES = createTag("stones");
+    public static final TagKey<Block> STRIPPED_LOGS = createTag("stripped_logs");
+    public static final TagKey<Block> STRIPPED_WOODS = createTag("stripped_woods");
+
+    private static TagKey<Block> createTag(String name) {
+      return TagKey.of(RegistryKeys.BLOCK, Identifier.of("c", name));
     }
   }
 }

@@ -109,11 +109,11 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
 
   RegistryKey<Biome> meadowCold = CONFIG.has_blooming_highlands ? NSBiomes.BLOOMING_HIGHLANDS : BiomeKeys.MEADOW;
 
-  RegistryKey<Biome> nullCold = CONFIG.has_arid_highlands ? NSBiomes.ARID_HIGHLANDS : null;
+  RegistryKey<Biome> nullCold = null;
 
-  RegistryKey<Biome> cherryCold = CONFIG.has_arid_highlands ? NSBiomes.ARID_HIGHLANDS : BiomeKeys.CHERRY_GROVE;
+  RegistryKey<Biome> cherryCold = BiomeKeys.CHERRY_GROVE;
 
-  RegistryKey<Biome> windsweptGravelyHillsCold = CONFIG.has_arid_highlands ? NSBiomes.ARID_HIGHLANDS : BiomeKeys.WINDSWEPT_GRAVELLY_HILLS;
+  RegistryKey<Biome> windsweptGravelyHillsCold = BiomeKeys.WINDSWEPT_GRAVELLY_HILLS;
 
   RegistryKey<Biome> windsweptHillsCold = CONFIG.has_shrubby_highlands ? NSBiomes.SHRUBBY_HIGHLANDS : BiomeKeys.WINDSWEPT_HILLS;
 
@@ -932,7 +932,7 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
   }
 
   private RegistryKey<Biome> getSteppeBiome(int temperature, int humidity, MultiNoiseUtil.ParameterRange weirdness) {
-    if (humidity < 3 && CONFIG.has_arid_highlands) {
+    if (temperature >= 3 && humidity < 3 && CONFIG.has_arid_highlands) {
       return NSBiomes.ARID_HIGHLANDS;
     } else {
       return humidity < 4 && CONFIG.has_shrubby_highlands ? NSBiomes.SHRUBBY_HIGHLANDS : (CONFIG.has_woody_highlands ? NSBiomes.WOODY_HIGHLANDS : this.getRegularBiome(
