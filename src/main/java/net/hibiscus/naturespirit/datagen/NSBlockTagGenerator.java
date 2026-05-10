@@ -73,12 +73,14 @@ public class NSBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
     for (StoneSet stoneSet : stones.values()) {
 
       getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(stoneSet.getRegisteredBlocksList().toArray(new Block[]{}));
+      getOrCreateTagBuilder(NSTags.CommonBlocks.STONES).add(stoneSet.getBase());
       if (stoneSet.hasTiles()) {
         getOrCreateTagBuilder(BlockTags.SLABS).add(stoneSet.getTilesSlab());
         getOrCreateTagBuilder(BlockTags.STAIRS).add(stoneSet.getTilesStairs());
         getOrCreateTagBuilder(BlockTags.WALLS).add(stoneSet.getTilesWall());
       }
       if (stoneSet.hasCobbled()) {
+        getOrCreateTagBuilder(NSTags.CommonBlocks.COBBLESTONES).add(stoneSet.getCobbled());
         getOrCreateTagBuilder(BlockTags.SLABS).add(stoneSet.getCobbledSlab());
         getOrCreateTagBuilder(BlockTags.STAIRS).add(stoneSet.getCobbledStairs());
         getOrCreateTagBuilder(BlockTags.WALLS).add(stoneSet.getCobbledWall());
@@ -279,6 +281,12 @@ public class NSBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         REGAL_SUCCULENT
     );
     getOrCreateTagBuilder(BlockTags.SAND).add(PINK_SAND, SANDY_SOIL);
+    getOrCreateTagBuilder(NSTags.CommonBlocks.SANDS).add(PINK_SAND, SANDY_SOIL);
+    getOrCreateTagBuilder(NSTags.CommonBlocks.SANDSTONE_BLOCKS).add(PINK_SANDSTONE, CHISELED_PINK_SANDSTONE, CUT_PINK_SANDSTONE, SMOOTH_PINK_SANDSTONE);
+    getOrCreateTagBuilder(NSTags.CommonBlocks.SANDSTONE_SLABS).add(PINK_SANDSTONE_SLAB, CUT_PINK_SANDSTONE_SLAB, SMOOTH_PINK_SANDSTONE_SLAB);
+    getOrCreateTagBuilder(NSTags.CommonBlocks.SANDSTONE_STAIRS).add(PINK_SANDSTONE_STAIRS, SMOOTH_PINK_SANDSTONE_STAIRS);
+    getOrCreateTagBuilder(NSTags.CommonBlocks.SANDSTONE_WALLS).add(PINK_SANDSTONE_WALL);
+    getOrCreateTagBuilder(NSTags.CommonBlocks.STRIPPED_WOODS).forceAddTag(Blocks.STRIPPED_WOOD);
     getOrCreateTagBuilder(BlockTags.SMELTS_TO_GLASS).add(PINK_SAND);
     getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE).add(PINK_SAND, SANDY_SOIL);
     getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)

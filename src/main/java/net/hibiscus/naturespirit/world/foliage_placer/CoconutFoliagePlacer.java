@@ -116,7 +116,7 @@ public class CoconutFoliagePlacer extends FoliagePlacer {
         blockState = blockState.with(Properties.WATERLOGGED, world.testFluidState(pos, (fluidState) -> fluidState.isEqualAndStill(Fluids.WATER)));
       }
       if (blockState.contains(LeavesBlock.DISTANCE)) {
-        blockState = blockState.with(LeavesBlock.DISTANCE, 5);
+        blockState = blockState.with(LeavesBlock.DISTANCE, 7);
       }
 
       placer.placeBlock(pos, blockState);

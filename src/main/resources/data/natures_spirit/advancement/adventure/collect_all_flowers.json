@@ -61,6 +61,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "helvola_flower":  {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "natures_spirit:helvola_flower"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "yellow_wildflower":  {
       "conditions": {
         "items": [
@@ -247,6 +259,18 @@
           {
             "items": [
               "natures_spirit:foxglove"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "begonia":  {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "natures_spirit:begonia"
             ]
           }
         ]
@@ -540,6 +564,7 @@
     ["pink_wisteria_vines"],
     ["purple_wisteria_vines"],
     ["lotus_flower"],
+    ["helvola_flower"],
     ["yellow_wildflower"],
     ["purple_wildflower"],
     ["bluebell"],
@@ -556,6 +581,7 @@
     ["red_heather"],
     ["gardenia"],
     ["foxglove"],
+    ["begonia"],
     ["bleeding_heart"],
     ["carnation"],
     ["blue_bulbs"],

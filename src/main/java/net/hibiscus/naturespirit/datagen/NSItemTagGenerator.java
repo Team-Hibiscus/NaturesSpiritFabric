@@ -35,7 +35,9 @@ public class NSItemTagGenerator extends FabricTagProvider.ItemTagProvider {
     }
 
     for (StoneSet stoneSet : NSRegistryHelper.StoneHashMap.values()) {
+      getOrCreateTagBuilder(NSTags.CommonItems.STONES).add(stoneSet.getBase().asItem());
       if (stoneSet.hasCobbled()) {
+        getOrCreateTagBuilder(NSTags.CommonItems.COBBLESTONES).add(stoneSet.getCobbled().asItem());
         getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(stoneSet.getCobbled().asItem());
         getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS).add(stoneSet.getCobbled().asItem());
       }
@@ -55,6 +57,12 @@ public class NSItemTagGenerator extends FabricTagProvider.ItemTagProvider {
     copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
     copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
     copy(NSTags.Blocks.STRIPPED_WOOD, NSTags.Items.STRIPPED_WOOD);
+    copy(NSTags.CommonBlocks.SANDS, NSTags.CommonItems.SANDS);
+    copy(NSTags.CommonBlocks.SANDSTONE_BLOCKS, NSTags.CommonItems.SANDSTONE_BLOCKS);
+    copy(NSTags.CommonBlocks.SANDSTONE_SLABS, NSTags.CommonItems.SANDSTONE_SLABS);
+    copy(NSTags.CommonBlocks.SANDSTONE_STAIRS, NSTags.CommonItems.SANDSTONE_STAIRS);
+    copy(NSTags.CommonBlocks.SANDSTONE_WALLS, NSTags.CommonItems.SANDSTONE_WALLS);
+    copy(NSTags.CommonBlocks.STRIPPED_WOODS, NSTags.CommonItems.STRIPPED_WOODS);
     copy(BlockTags.LEAVES, ItemTags.LEAVES);
     copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
     copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
