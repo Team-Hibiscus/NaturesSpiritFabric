@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.hibiscus.naturespirit.blocks.block_entities.PizzaToppingVariant;
+import net.hibiscus.naturespirit.compat.lithostitched.LithostitchedSetup;
 import net.hibiscus.naturespirit.config.NSConfig;
 import net.hibiscus.naturespirit.mixin.StatsTypeAccessor;
 import net.hibiscus.naturespirit.registration.*;
@@ -115,6 +116,10 @@ public class NatureSpirit implements ModInitializer {
           ResourcePackActivationType.NORMAL
       );
     }
+
+      if (FabricLoader.getInstance().getModContainer("lithostitched").isPresent()) {
+          LithostitchedSetup.registerLithostitchedBiomes();
+      }
 
     NSSounds.registerSounds();
     NSDataComponents.registerDataComponents();

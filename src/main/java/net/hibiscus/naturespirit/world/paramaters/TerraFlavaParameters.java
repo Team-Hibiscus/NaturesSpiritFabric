@@ -1,4 +1,4 @@
-package net.hibiscus.naturespirit.terrablender;
+package net.hibiscus.naturespirit.world.paramaters;
 
 import com.mojang.datafixers.util.Pair;
 import net.hibiscus.naturespirit.registration.NSBiomes;
@@ -13,26 +13,21 @@ import java.util.function.Consumer;
 import static net.hibiscus.naturespirit.NatureSpirit.CONFIG;
 
 
-public class TerraSolarisParameters extends VanillaBiomeParameters {
+public class TerraFlavaParameters extends VanillaBiomeParameters {
 
   private final MultiNoiseUtil.ParameterRange defaultParameter = MultiNoiseUtil.ParameterRange.of(-1.0F, 1.0F);
-
   private final MultiNoiseUtil.ParameterRange[] temperatureParameters = new MultiNoiseUtil.ParameterRange[]{
-      MultiNoiseUtil.ParameterRange.of(-1.0F, -0.45F),
-      MultiNoiseUtil.ParameterRange.of(-0.45F, -0.15F),
-      MultiNoiseUtil.ParameterRange.of(-0.15F, 0.2F),
-      MultiNoiseUtil.ParameterRange.of(0.2F, 0.55F),
-      MultiNoiseUtil.ParameterRange.of(0.55F, 1.0F)
+      MultiNoiseUtil.ParameterRange.of(-1.0F, -0.45F), MultiNoiseUtil.ParameterRange.of(-0.45F, -0.15F), MultiNoiseUtil.ParameterRange.of(-0.15F, 0.2F),
+      MultiNoiseUtil.ParameterRange.of(0.2F,
+          0.55F
+      ), MultiNoiseUtil.ParameterRange.of(0.55F, 1.0F)
   };
-
   private final MultiNoiseUtil.ParameterRange[] humidityParameters = new MultiNoiseUtil.ParameterRange[]{
-      MultiNoiseUtil.ParameterRange.of(-1.0F, -0.35F),
-      MultiNoiseUtil.ParameterRange.of(-0.35F, -0.1F),
-      MultiNoiseUtil.ParameterRange.of(-0.1F, 0.1F),
-      MultiNoiseUtil.ParameterRange.of(0.1F, 0.3F),
-      MultiNoiseUtil.ParameterRange.of(0.3F, 1.0F)
+      MultiNoiseUtil.ParameterRange.of(-1.0F, -0.35F), MultiNoiseUtil.ParameterRange.of(-0.35F, -0.1F), MultiNoiseUtil.ParameterRange.of(-0.1F, 0.1F),
+      MultiNoiseUtil.ParameterRange.of(0.1F,
+          0.3F
+      ), MultiNoiseUtil.ParameterRange.of(0.3F, 1.0F)
   };
-
   private final MultiNoiseUtil.ParameterRange[] erosionParameters = new MultiNoiseUtil.ParameterRange[]{
       MultiNoiseUtil.ParameterRange.of(-1.0F, -0.78F),
       MultiNoiseUtil.ParameterRange.of(-0.78F, -0.375F),
@@ -42,84 +37,42 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
       MultiNoiseUtil.ParameterRange.of(0.45F, 0.55F),
       MultiNoiseUtil.ParameterRange.of(0.55F, 1.0F)
   };
-
   private final MultiNoiseUtil.ParameterRange frozenTemperature;
-
   private final MultiNoiseUtil.ParameterRange nonFrozenTemperatureParameters;
-
   private final MultiNoiseUtil.ParameterRange mushroomFieldsContinentalness;
-
   private final MultiNoiseUtil.ParameterRange deepOceanContinentalness;
-
   private final MultiNoiseUtil.ParameterRange oceanContinentalness;
-
   private final MultiNoiseUtil.ParameterRange coastContinentalness;
-
   private final MultiNoiseUtil.ParameterRange riverContinentalness;
-
   private final MultiNoiseUtil.ParameterRange nearInlandContinentalness;
-
   private final MultiNoiseUtil.ParameterRange midInlandContinentalness;
-
   private final MultiNoiseUtil.ParameterRange farInlandContinentalness;
-
   private final RegistryKey<Biome>[][] oceanBiomes;
-
   private final RegistryKey<Biome>[][] commonBiomes;
-
   private final RegistryKey<Biome>[][] uncommonBiomes;
-
   private final RegistryKey<Biome>[][] nearMountainBiomes;
-
   private final RegistryKey<Biome>[][] specialNearMountainBiomes;
-
   private final RegistryKey<Biome>[][] windsweptBiomes;
+  RegistryKey<Biome> commonBiomePlainsCold = CONFIG.has_golden_wilds ? NSBiomes.GOLDEN_WILDS : BiomeKeys.PLAINS;
+  RegistryKey<Biome> mountainBiomeMeadowCold = CONFIG.has_golden_wilds ? NSBiomes.GOLDEN_WILDS : BiomeKeys.MEADOW;
+  RegistryKey<Biome> mountainBiomeForestCold = CONFIG.has_golden_wilds ? NSBiomes.GOLDEN_WILDS : BiomeKeys.FOREST;
+  RegistryKey<Biome> mountainBiomeMeadowCold2 = CONFIG.has_marigold_meadows ? NSBiomes.MARIGOLD_MEADOWS : (CONFIG.has_golden_wilds ? NSBiomes.GOLDEN_WILDS : BiomeKeys.MEADOW);
+  RegistryKey<Biome> uncommonBiomeCold = CONFIG.has_marigold_meadows ? NSBiomes.MARIGOLD_MEADOWS : null;
+  RegistryKey<Biome> commonBiomeForestCold = CONFIG.has_maple_woodlands ? NSBiomes.MAPLE_WOODLANDS : BiomeKeys.FOREST;
+  RegistryKey<Biome> commonBiomeTaigaCold = CONFIG.has_aspen_forest ? NSBiomes.ASPEN_FOREST : BiomeKeys.TAIGA;
+  RegistryKey<Biome> commonBiomeOldSpruceCold = CONFIG.has_aspen_forest ? NSBiomes.ASPEN_FOREST : BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA;
+  RegistryKey<Biome> uncommonBiomeOldPineCold = CONFIG.has_aspen_forest ? null : BiomeKeys.OLD_GROWTH_PINE_TAIGA;
+  RegistryKey<Biome> commonBiomeDesertHot = CONFIG.has_drylands ? NSBiomes.DRYLANDS : BiomeKeys.DESERT;
+  RegistryKey<Biome> commonBiomeDesertHot2 = CONFIG.has_wooded_drylands ? NSBiomes.WOODED_DRYLANDS : BiomeKeys.DESERT;
+  RegistryKey<Biome> commonBiomeSavannaWarm = CONFIG.has_wooded_drylands ? NSBiomes.WOODED_DRYLANDS : BiomeKeys.SAVANNA;
+  RegistryKey<Biome> commonBiomeForestWarm = CONFIG.has_wooded_drylands ? NSBiomes.WOODED_DRYLANDS : BiomeKeys.FOREST;
+  RegistryKey<Biome> nearBiomeSavannaPlateauWarm = CONFIG.has_wooded_drylands ? NSBiomes.WOODED_DRYLANDS : BiomeKeys.SAVANNA_PLATEAU;
+  RegistryKey<Biome> nearBiomeBadlandsHot = CONFIG.has_drylands ? NSBiomes.DRYLANDS : BiomeKeys.BADLANDS;
+  RegistryKey<Biome> nearBiomeWoodedBadlandsHot = CONFIG.has_wooded_drylands ? NSBiomes.WOODED_DRYLANDS : BiomeKeys.WOODED_BADLANDS;
+  RegistryKey<Biome> nearBiomeBadlandsHot2 = CONFIG.has_wooded_drylands ? NSBiomes.WOODED_DRYLANDS : BiomeKeys.BADLANDS;
+  RegistryKey<Biome> specialBiomeErodedBadlandsHot = CONFIG.has_drylands ? null : BiomeKeys.ERODED_BADLANDS;
 
-  RegistryKey<Biome> commonBiomeForestCold = CONFIG.has_woody_highlands ? NSBiomes.WOODY_HIGHLANDS : BiomeKeys.FOREST;
-
-  RegistryKey<Biome> nearBiomeForestCold = CONFIG.has_blooming_highlands ? NSBiomes.BLOOMING_HIGHLANDS : BiomeKeys.FOREST;
-
-  RegistryKey<Biome> commonBiomeTaigaCold = CONFIG.has_woody_highlands ? NSBiomes.WOODY_HIGHLANDS : BiomeKeys.TAIGA;
-
-  RegistryKey<Biome> commonBiomeOldSpruceCold = CONFIG.has_woody_highlands ? NSBiomes.WOODY_HIGHLANDS : BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA;
-
-  RegistryKey<Biome> uncommonBiomeOldPineCold = CONFIG.has_woody_highlands ? null : BiomeKeys.OLD_GROWTH_PINE_TAIGA;
-
-  RegistryKey<Biome> commonPlains = CONFIG.has_sugi_forest ? NSBiomes.SUGI_FOREST : BiomeKeys.PLAINS;
-
-  RegistryKey<Biome> commonForest = CONFIG.has_sugi_forest ? NSBiomes.SUGI_FOREST : BiomeKeys.FOREST;
-
-  RegistryKey<Biome> uncommonNull = CONFIG.has_blooming_sugi_forest ? NSBiomes.BLOOMING_SUGI_FOREST : null;
-
-  RegistryKey<Biome> specialForest = CONFIG.has_blooming_sugi_forest ? NSBiomes.BLOOMING_SUGI_FOREST : BiomeKeys.FOREST;
-
-  RegistryKey<Biome> commonBirchForest = CONFIG.has_sugi_forest ? NSBiomes.SUGI_FOREST : BiomeKeys.BIRCH_FOREST;
-
-  RegistryKey<Biome> uncommonBirchForest = CONFIG.has_sugi_forest ? NSBiomes.SUGI_FOREST : BiomeKeys.OLD_GROWTH_BIRCH_FOREST;
-
-  RegistryKey<Biome> mountainMeadow = CONFIG.has_sugi_forest ? NSBiomes.SUGI_FOREST : BiomeKeys.MEADOW;
-
-  RegistryKey<Biome> windsweptHills = CONFIG.has_sugi_forest ? NSBiomes.SUGI_FOREST : BiomeKeys.WINDSWEPT_HILLS;
-
-  RegistryKey<Biome> windsweptHills2 = CONFIG.has_floral_ridges ? NSBiomes.FLORAL_RIDGES : BiomeKeys.WINDSWEPT_HILLS;
-
-  RegistryKey<Biome> windsweptForest = CONFIG.has_sugi_forest ? NSBiomes.SUGI_FOREST : BiomeKeys.WINDSWEPT_FOREST;
-
-  RegistryKey<Biome> plainsCold = CONFIG.has_shrubby_highlands ? NSBiomes.SHRUBBY_HIGHLANDS : BiomeKeys.PLAINS;
-
-  RegistryKey<Biome> meadowCold = CONFIG.has_blooming_highlands ? NSBiomes.BLOOMING_HIGHLANDS : BiomeKeys.MEADOW;
-
-  RegistryKey<Biome> nullCold = null;
-
-  RegistryKey<Biome> cherryCold = BiomeKeys.CHERRY_GROVE;
-
-  RegistryKey<Biome> windsweptGravelyHillsCold = BiomeKeys.WINDSWEPT_GRAVELLY_HILLS;
-
-  RegistryKey<Biome> windsweptHillsCold = CONFIG.has_shrubby_highlands ? NSBiomes.SHRUBBY_HIGHLANDS : BiomeKeys.WINDSWEPT_HILLS;
-
-  RegistryKey<Biome> windsweptForestCold = CONFIG.has_shrubby_highlands ? NSBiomes.SHRUBBY_HIGHLANDS : BiomeKeys.WINDSWEPT_FOREST;
-
-  public TerraSolarisParameters() {
+  public TerraFlavaParameters() {
     this.frozenTemperature = this.temperatureParameters[0];
     this.nonFrozenTemperatureParameters = MultiNoiseUtil.ParameterRange.combine(this.temperatureParameters[1], this.temperatureParameters[4]);
     this.mushroomFieldsContinentalness = MultiNoiseUtil.ParameterRange.of(-1.2F, -1.05F);
@@ -141,54 +94,56 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
         {
             BiomeKeys.SNOWY_PLAINS, BiomeKeys.SNOWY_PLAINS, BiomeKeys.SNOWY_PLAINS, BiomeKeys.SNOWY_TAIGA, BiomeKeys.TAIGA
         }, {
-        plainsCold, plainsCold, commonBiomeForestCold, commonBiomeTaigaCold, commonBiomeOldSpruceCold
+        commonBiomePlainsCold, commonBiomePlainsCold, commonBiomeForestCold, commonBiomeTaigaCold, commonBiomeOldSpruceCold
     }, {
-        BiomeKeys.FLOWER_FOREST, commonPlains, commonForest, commonBirchForest, BiomeKeys.DARK_FOREST
+        BiomeKeys.FLOWER_FOREST, BiomeKeys.PLAINS, BiomeKeys.FOREST, BiomeKeys.BIRCH_FOREST, BiomeKeys.DARK_FOREST
     }, {
-        BiomeKeys.SAVANNA, BiomeKeys.SAVANNA, BiomeKeys.FOREST, BiomeKeys.JUNGLE, BiomeKeys.JUNGLE
+        commonBiomeSavannaWarm, commonBiomeSavannaWarm, commonBiomeForestWarm, BiomeKeys.JUNGLE, BiomeKeys.JUNGLE
     }, {
-        BiomeKeys.DESERT, BiomeKeys.DESERT, BiomeKeys.DESERT, BiomeKeys.DESERT, BiomeKeys.DESERT
+        commonBiomeDesertHot, commonBiomeDesertHot, commonBiomeDesertHot, commonBiomeDesertHot, commonBiomeDesertHot2
     }
     };
     this.uncommonBiomes = new RegistryKey[][]{
-        {BiomeKeys.ICE_SPIKES, null, BiomeKeys.SNOWY_TAIGA, null, null}, {null, null, null, null, uncommonBiomeOldPineCold}, {
-        BiomeKeys.SUNFLOWER_PLAINS, uncommonNull, uncommonNull, uncommonBirchForest, null
+        {BiomeKeys.ICE_SPIKES, null, BiomeKeys.SNOWY_TAIGA, null, null}, {uncommonBiomeCold, null, null, null, uncommonBiomeOldPineCold}, {
+        BiomeKeys.SUNFLOWER_PLAINS, null, null, BiomeKeys.OLD_GROWTH_BIRCH_FOREST, null
     }, {
-        null, null, BiomeKeys.PLAINS, BiomeKeys.SPARSE_JUNGLE, BiomeKeys.BAMBOO_JUNGLE
+        null, null, null, BiomeKeys.SPARSE_JUNGLE, null
     }, {null, null, null, null, null}
     };
     this.nearMountainBiomes = new RegistryKey[][]{
         {
             BiomeKeys.SNOWY_PLAINS, BiomeKeys.SNOWY_PLAINS, BiomeKeys.SNOWY_PLAINS, BiomeKeys.SNOWY_TAIGA, BiomeKeys.SNOWY_TAIGA
         }, {
-        meadowCold, meadowCold, nearBiomeForestCold, commonBiomeTaigaCold, commonBiomeOldSpruceCold
+        mountainBiomeMeadowCold2, mountainBiomeMeadowCold, mountainBiomeForestCold, commonBiomeTaigaCold, commonBiomeOldSpruceCold
     }, {
-        BiomeKeys.MEADOW, BiomeKeys.MEADOW, mountainMeadow, mountainMeadow, BiomeKeys.DARK_FOREST
+        BiomeKeys.MEADOW, BiomeKeys.MEADOW, BiomeKeys.MEADOW, BiomeKeys.MEADOW, BiomeKeys.DARK_FOREST
     }, {
-        BiomeKeys.SAVANNA_PLATEAU, BiomeKeys.SAVANNA_PLATEAU, BiomeKeys.FOREST, BiomeKeys.FOREST, BiomeKeys.JUNGLE
+        nearBiomeSavannaPlateauWarm, nearBiomeSavannaPlateauWarm, commonBiomeForestWarm, BiomeKeys.FOREST, BiomeKeys.JUNGLE
     }, {
-        BiomeKeys.BADLANDS, BiomeKeys.BADLANDS, BiomeKeys.BADLANDS, BiomeKeys.WOODED_BADLANDS, BiomeKeys.WOODED_BADLANDS
+        nearBiomeBadlandsHot, nearBiomeBadlandsHot, nearBiomeBadlandsHot2, nearBiomeWoodedBadlandsHot, nearBiomeWoodedBadlandsHot
     }
     };
     this.specialNearMountainBiomes = new RegistryKey[][]{
         {BiomeKeys.ICE_SPIKES, null, null, null, null}, {
-        cherryCold, nullCold, meadowCold, meadowCold, uncommonBiomeOldPineCold
+        null, uncommonBiomeCold, null, null, uncommonBiomeOldPineCold
     }, {
-        BiomeKeys.CHERRY_GROVE, BiomeKeys.CHERRY_GROVE, specialForest, commonBirchForest, null
+        BiomeKeys.CHERRY_GROVE, BiomeKeys.CHERRY_GROVE, BiomeKeys.FOREST, BiomeKeys.BIRCH_FOREST, null
     }, {null, null, null, null, null}, {
-        BiomeKeys.ERODED_BADLANDS, BiomeKeys.ERODED_BADLANDS, null, null, null
+        specialBiomeErodedBadlandsHot, specialBiomeErodedBadlandsHot, null, null, null
     }
     };
     this.windsweptBiomes = new RegistryKey[][]{
-        {BiomeKeys.WINDSWEPT_GRAVELLY_HILLS, BiomeKeys.WINDSWEPT_GRAVELLY_HILLS, BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.WINDSWEPT_FOREST},
-        {windsweptGravelyHillsCold, windsweptGravelyHillsCold, windsweptHillsCold, windsweptForestCold, windsweptForestCold},
-        {windsweptHills2, windsweptHills2, windsweptHills, windsweptForest, windsweptForest},
-        {null, null, null, null, null},
-        {null, null, null, null, null}
+        {
+            BiomeKeys.WINDSWEPT_GRAVELLY_HILLS, BiomeKeys.WINDSWEPT_GRAVELLY_HILLS, BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.WINDSWEPT_FOREST
+        }, {
+        BiomeKeys.WINDSWEPT_GRAVELLY_HILLS, BiomeKeys.WINDSWEPT_GRAVELLY_HILLS, BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.WINDSWEPT_FOREST
+    }, {
+        BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.WINDSWEPT_FOREST
+    }, {null, null, null, null, null}, {null, null, null, null, null}
     };
   }
 
-  protected void writeOverworldBiomeParameters(Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> parameters) {
+  public void writeOverworldBiomeParameters(Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> parameters) {
     this.writeOceanBiomes(parameters);
     this.writeLandBiomes(parameters);
     this.writeCaveBiomes(parameters);
@@ -208,26 +163,10 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
 
     for (int i = 0; i < this.temperatureParameters.length; ++i) {
       MultiNoiseUtil.ParameterRange parameterRange = this.temperatureParameters[i];
-      this.writeBiomeParameters(
-          parameters,
-          parameterRange,
-          this.defaultParameter,
-          this.deepOceanContinentalness,
-          this.defaultParameter,
-          this.defaultParameter,
-          0.0F,
-          this.oceanBiomes[0][i]
-      );
-      this.writeBiomeParameters(
-          parameters,
-          parameterRange,
-          this.defaultParameter,
-          this.oceanContinentalness,
-          this.defaultParameter,
-          this.defaultParameter,
-          0.0F,
-          this.oceanBiomes[1][i]
-      );
+      this.writeBiomeParameters(parameters, parameterRange, this.defaultParameter, this.deepOceanContinentalness, this.defaultParameter, this.defaultParameter, 0.0F,
+          this.oceanBiomes[0][i]);
+      this.writeBiomeParameters(parameters, parameterRange, this.defaultParameter, this.oceanContinentalness, this.defaultParameter, this.defaultParameter, 0.0F,
+          this.oceanBiomes[1][i]);
     }
 
   }
@@ -255,7 +194,7 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
       for (int j = 0; j < this.humidityParameters.length; ++j) {
         MultiNoiseUtil.ParameterRange parameterRange2 = this.humidityParameters[j];
         RegistryKey<Biome> registryKey = this.getRegularBiome(i, j, weirdness);
-        RegistryKey<Biome> registryKey2 = this.getBadlandsOrRegularBiome(i, j, weirdness);
+        RegistryKey<Biome> registryKey2 = this.getWoodedDrylandsOrRegularBiome(i, j, weirdness);
         RegistryKey<Biome> registryKey3 = this.getMountainStartBiome(i, j, weirdness);
         RegistryKey<Biome> registryKey4 = this.getNearMountainBiome(i, j, weirdness);
         RegistryKey<Biome> registryKey5 = this.getWindsweptOrRegularBiome(i, j, weirdness);
@@ -315,7 +254,7 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
             this.erosionParameters[4],
             weirdness,
             0.0F,
-            registryKey
+            CONFIG.has_drylands ? registryKey2 : registryKey
         );
         this.writeBiomeParameters(parameters,
             parameterRange,
@@ -356,7 +295,7 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
       for (int j = 0; j < this.humidityParameters.length; ++j) {
         MultiNoiseUtil.ParameterRange parameterRange2 = this.humidityParameters[j];
         RegistryKey<Biome> registryKey = this.getRegularBiome(i, j, weirdness);
-        RegistryKey<Biome> registryKey2 = this.getBadlandsOrRegularBiome(i, j, weirdness);
+        RegistryKey<Biome> registryKey2 = this.getWoodedDrylandsOrRegularBiome(i, j, weirdness);
         RegistryKey<Biome> registryKey3 = this.getMountainStartBiome(i, j, weirdness);
         RegistryKey<Biome> registryKey4 = this.getNearMountainBiome(i, j, weirdness);
         RegistryKey<Biome> registryKey5 = this.getWindsweptOrRegularBiome(i, j, weirdness);
@@ -463,6 +402,24 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
         0.0F,
         BiomeKeys.STONY_SHORE
     );
+    this.writeBiomeParameters(parameters,
+        MultiNoiseUtil.ParameterRange.combine(this.temperatureParameters[1], this.temperatureParameters[2]),
+        this.defaultParameter,
+        MultiNoiseUtil.ParameterRange.combine(this.nearInlandContinentalness, this.farInlandContinentalness),
+        this.erosionParameters[6],
+        weirdness,
+        0.0F,
+        BiomeKeys.SWAMP
+    );
+    this.writeBiomeParameters(parameters,
+        MultiNoiseUtil.ParameterRange.combine(this.temperatureParameters[3], this.temperatureParameters[4]),
+        this.defaultParameter,
+        MultiNoiseUtil.ParameterRange.combine(this.nearInlandContinentalness, this.farInlandContinentalness),
+        this.erosionParameters[6],
+        weirdness,
+        0.0F,
+        BiomeKeys.MANGROVE_SWAMP
+    );
 
     for (int i = 0; i < this.temperatureParameters.length; ++i) {
       MultiNoiseUtil.ParameterRange parameterRange = this.temperatureParameters[i];
@@ -478,16 +435,6 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
         RegistryKey<Biome> registryKey7 = this.getBiomeOrWindsweptSavanna(i, j, weirdness, registryKey);
         RegistryKey<Biome> registryKey8 = this.getErodedShoreBiome(i, j, weirdness);
         RegistryKey<Biome> registryKey9 = this.getMountainSlopeBiome(i, j, weirdness);
-
-        this.writeBiomeParameters(parameters,
-            parameterRange,
-            parameterRange2,
-            MultiNoiseUtil.ParameterRange.combine(this.nearInlandContinentalness, this.farInlandContinentalness),
-            this.erosionParameters[6],
-            weirdness,
-            0.0F,
-            this.getWetlandType(i, j, weirdness)
-        );
         this.writeBiomeParameters(parameters,
             parameterRange,
             parameterRange2,
@@ -506,18 +453,11 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
             0.0F,
             registryKey3
         );
-        this.writeBiomeParameters(
-            parameters,
-            parameterRange,
-            parameterRange2,
-            this.farInlandContinentalness,
-            this.erosionParameters[1],
-            weirdness,
-            0.0F,
-            i == 0 ? registryKey9 : registryKey5
-        );
+        this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.farInlandContinentalness, this.erosionParameters[1], weirdness, 0.0F,
+            i == 0 ? registryKey9 : registryKey5);
         this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.nearInlandContinentalness, this.erosionParameters[2], weirdness, 0.0F, registryKey);
-        this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.midInlandContinentalness, this.erosionParameters[2], weirdness, 0.0F, registryKey2);
+        this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.midInlandContinentalness, this.erosionParameters[2], weirdness, 0.0F,
+            CONFIG.has_drylands ? registryKey : registryKey2);
         this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.farInlandContinentalness, this.erosionParameters[2], weirdness, 0.0F, registryKey5);
         this.writeBiomeParameters(parameters,
             parameterRange,
@@ -535,7 +475,7 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
             this.erosionParameters[3],
             weirdness,
             0.0F,
-            registryKey2
+            CONFIG.has_drylands ? registryKey : registryKey2
         );
         if (weirdness.max() < 0L) {
           this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.coastContinentalness, this.erosionParameters[4], weirdness, 0.0F, registryKey6);
@@ -559,6 +499,9 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
               registryKey
           );
         }
+
+        this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.coastContinentalness, this.erosionParameters[5], weirdness, 0.0F, registryKey8);
+        this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.nearInlandContinentalness, this.erosionParameters[5], weirdness, 0.0F, registryKey7);
         this.writeBiomeParameters(parameters,
             parameterRange,
             parameterRange2,
@@ -568,13 +511,22 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
             0.0F,
             registryKey4
         );
-        this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.coastContinentalness, this.erosionParameters[5], weirdness, 0.0F, registryKey8);
-        this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.nearInlandContinentalness, this.erosionParameters[5], weirdness, 0.0F, registryKey7);
-
         if (weirdness.max() < 0L) {
           this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.coastContinentalness, this.erosionParameters[6], weirdness, 0.0F, registryKey6);
         } else {
           this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.coastContinentalness, this.erosionParameters[6], weirdness, 0.0F, registryKey);
+        }
+
+        if (i == 0) {
+          this.writeBiomeParameters(parameters,
+              parameterRange,
+              parameterRange2,
+              MultiNoiseUtil.ParameterRange.combine(this.nearInlandContinentalness, this.farInlandContinentalness),
+              this.erosionParameters[6],
+              weirdness,
+              0.0F,
+              registryKey
+          );
         }
       }
     }
@@ -591,6 +543,24 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
         0.0F,
         BiomeKeys.STONY_SHORE
     );
+    this.writeBiomeParameters(parameters,
+        MultiNoiseUtil.ParameterRange.combine(this.temperatureParameters[1], this.temperatureParameters[2]),
+        this.defaultParameter,
+        MultiNoiseUtil.ParameterRange.combine(this.nearInlandContinentalness, this.farInlandContinentalness),
+        this.erosionParameters[6],
+        weirdness,
+        0.0F,
+        BiomeKeys.SWAMP
+    );
+    this.writeBiomeParameters(parameters,
+        MultiNoiseUtil.ParameterRange.combine(this.temperatureParameters[3], this.temperatureParameters[4]),
+        this.defaultParameter,
+        MultiNoiseUtil.ParameterRange.combine(this.nearInlandContinentalness, this.farInlandContinentalness),
+        this.erosionParameters[6],
+        weirdness,
+        0.0F,
+        BiomeKeys.MANGROVE_SWAMP
+    );
 
     for (int i = 0; i < this.temperatureParameters.length; ++i) {
       MultiNoiseUtil.ParameterRange parameterRange = this.temperatureParameters[i];
@@ -606,20 +576,11 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
         this.writeBiomeParameters(parameters,
             parameterRange,
             parameterRange2,
-            MultiNoiseUtil.ParameterRange.combine(this.nearInlandContinentalness, this.farInlandContinentalness),
-            this.erosionParameters[6],
-            weirdness,
-            0.0F,
-            this.getWetlandType(i, j, weirdness)
-        );
-        this.writeBiomeParameters(parameters,
-            parameterRange,
-            parameterRange2,
             this.nearInlandContinentalness,
             MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[0], this.erosionParameters[1]),
             weirdness,
             0.0F,
-            registryKey2
+            CONFIG.has_drylands ? registryKey : registryKey2
         );
         this.writeBiomeParameters(parameters,
             parameterRange,
@@ -646,7 +607,7 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
             MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[2], this.erosionParameters[3]),
             weirdness,
             0.0F,
-            registryKey2
+            CONFIG.has_drylands ? registryKey : registryKey2
         );
         this.writeBiomeParameters(parameters,
             parameterRange,
@@ -666,6 +627,8 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
             0.0F,
             registryKey
         );
+        this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.coastContinentalness, this.erosionParameters[5], weirdness, 0.0F, registryKey6);
+        this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.nearInlandContinentalness, this.erosionParameters[5], weirdness, 0.0F, registryKey5);
         this.writeBiomeParameters(parameters,
             parameterRange,
             parameterRange2,
@@ -675,9 +638,18 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
             0.0F,
             registryKey
         );
-        this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.coastContinentalness, this.erosionParameters[5], weirdness, 0.0F, registryKey6);
-        this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.nearInlandContinentalness, this.erosionParameters[5], weirdness, 0.0F, registryKey5);
         this.writeBiomeParameters(parameters, parameterRange, parameterRange2, this.coastContinentalness, this.erosionParameters[6], weirdness, 0.0F, registryKey4);
+        if (i == 0) {
+          this.writeBiomeParameters(parameters,
+              parameterRange,
+              parameterRange2,
+              MultiNoiseUtil.ParameterRange.combine(this.nearInlandContinentalness, this.farInlandContinentalness),
+              this.erosionParameters[6],
+              weirdness,
+              0.0F,
+              registryKey
+          );
+        }
       }
     }
 
@@ -694,6 +666,15 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
         weirdness.max() < 0L ? BiomeKeys.STONY_SHORE : BiomeKeys.FROZEN_RIVER
     );
     this.writeBiomeParameters(parameters,
+        this.nonFrozenTemperatureParameters,
+        this.defaultParameter,
+        this.coastContinentalness,
+        MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[0], this.erosionParameters[1]),
+        weirdness,
+        0.0F,
+        weirdness.max() < 0L ? BiomeKeys.STONY_SHORE : BiomeKeys.RIVER
+    );
+    this.writeBiomeParameters(parameters,
         this.frozenTemperature,
         this.defaultParameter,
         this.nearInlandContinentalness,
@@ -701,6 +682,15 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
         weirdness,
         0.0F,
         BiomeKeys.FROZEN_RIVER
+    );
+    this.writeBiomeParameters(parameters,
+        this.nonFrozenTemperatureParameters,
+        this.defaultParameter,
+        this.nearInlandContinentalness,
+        MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[0], this.erosionParameters[1]),
+        weirdness,
+        0.0F,
+        BiomeKeys.RIVER
     );
     this.writeBiomeParameters(parameters,
         this.frozenTemperature,
@@ -711,15 +701,36 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
         0.0F,
         BiomeKeys.FROZEN_RIVER
     );
-    this.writeBiomeParameters(
-        parameters,
-        this.frozenTemperature,
+    this.writeBiomeParameters(parameters,
+        this.nonFrozenTemperatureParameters,
         this.defaultParameter,
-        this.coastContinentalness,
+        MultiNoiseUtil.ParameterRange.combine(this.coastContinentalness, this.farInlandContinentalness),
+        MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[2], this.erosionParameters[5]),
+        weirdness,
+        0.0F,
+        BiomeKeys.RIVER
+    );
+    this.writeBiomeParameters(parameters, this.frozenTemperature, this.defaultParameter, this.coastContinentalness, this.erosionParameters[6], weirdness, 0.0F,
+        BiomeKeys.FROZEN_RIVER);
+    this.writeBiomeParameters(parameters, this.nonFrozenTemperatureParameters, this.defaultParameter, this.coastContinentalness, this.erosionParameters[6], weirdness, 0.0F,
+        BiomeKeys.RIVER);
+    this.writeBiomeParameters(parameters,
+        MultiNoiseUtil.ParameterRange.combine(this.temperatureParameters[1], this.temperatureParameters[2]),
+        this.defaultParameter,
+        MultiNoiseUtil.ParameterRange.combine(this.riverContinentalness, this.farInlandContinentalness),
         this.erosionParameters[6],
         weirdness,
         0.0F,
-        BiomeKeys.FROZEN_RIVER
+        BiomeKeys.SWAMP
+    );
+    this.writeBiomeParameters(parameters,
+        MultiNoiseUtil.ParameterRange.combine(this.temperatureParameters[3], this.temperatureParameters[4]),
+        this.defaultParameter,
+        MultiNoiseUtil.ParameterRange.combine(this.riverContinentalness, this.farInlandContinentalness),
+        this.erosionParameters[6],
+        weirdness,
+        0.0F,
+        BiomeKeys.MANGROVE_SWAMP
     );
     this.writeBiomeParameters(parameters,
         this.frozenTemperature,
@@ -730,42 +741,13 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
         0.0F,
         BiomeKeys.FROZEN_RIVER
     );
-    if (!CONFIG.has_sugi_forest) {
-      this.writeBiomeParameters(parameters,
-          this.nonFrozenTemperatureParameters,
-          this.defaultParameter,
-          this.coastContinentalness,
-          MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[0], this.erosionParameters[1]),
-          weirdness,
-          0.0F,
-          weirdness.max() < 0L ? BiomeKeys.STONY_SHORE : BiomeKeys.RIVER
-      );
-      this.writeBiomeParameters(parameters,
-          this.nonFrozenTemperatureParameters,
-          this.defaultParameter,
-          this.nearInlandContinentalness,
-          MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[0], this.erosionParameters[1]),
-          weirdness,
-          0.0F,
-          BiomeKeys.RIVER
-      );
-      this.writeBiomeParameters(parameters,
-          this.nonFrozenTemperatureParameters,
-          this.defaultParameter,
-          MultiNoiseUtil.ParameterRange.combine(this.coastContinentalness, this.farInlandContinentalness),
-          MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[2], this.erosionParameters[4]),
-          weirdness,
-          0.0F,
-          BiomeKeys.RIVER
-      );
-    }
 
     for (int i = 0; i < this.temperatureParameters.length; ++i) {
       MultiNoiseUtil.ParameterRange parameterRange = this.temperatureParameters[i];
 
       for (int j = 0; j < this.humidityParameters.length; ++j) {
         MultiNoiseUtil.ParameterRange parameterRange2 = this.humidityParameters[j];
-        RegistryKey<Biome> registryKey = this.getBadlandsOrRegularBiome(i, j, weirdness);
+        RegistryKey<Biome> registryKey = CONFIG.has_drylands ? this.getRegularBiome(i, j, weirdness) : this.getBadlandsOrRegularBiome(i, j, weirdness);
         this.writeBiomeParameters(parameters,
             parameterRange,
             parameterRange2,
@@ -775,74 +757,6 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
             0.0F,
             registryKey
         );
-        this.writeBiomeParameters(parameters,
-            parameterRange,
-            parameterRange2,
-            MultiNoiseUtil.ParameterRange.combine(this.coastContinentalness, this.farInlandContinentalness),
-            this.erosionParameters[6],
-            weirdness,
-            0.0F,
-            this.getWetlandType2(i, j, weirdness)
-        );
-        if (CONFIG.has_sugi_forest) {
-          if (i == 2 && j < 4 && j > 0) {
-            this.writeBiomeParameters(parameters,
-                parameterRange,
-                parameterRange2,
-                this.coastContinentalness,
-                MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[0], this.erosionParameters[1]),
-                weirdness,
-                0.0F,
-                NSBiomes.SUGI_FOREST
-            );
-            this.writeBiomeParameters(parameters,
-                parameterRange,
-                parameterRange2,
-                this.nearInlandContinentalness,
-                MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[0], this.erosionParameters[1]),
-                weirdness,
-                0.0F,
-                NSBiomes.SUGI_FOREST
-            );
-            this.writeBiomeParameters(parameters,
-                parameterRange,
-                parameterRange2,
-                MultiNoiseUtil.ParameterRange.combine(this.coastContinentalness, this.farInlandContinentalness),
-                MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[2], this.erosionParameters[4]),
-                weirdness,
-                0.0F,
-                NSBiomes.SUGI_FOREST
-            );
-          } else if (i > 0) {
-            this.writeBiomeParameters(parameters,
-                parameterRange,
-                parameterRange2,
-                this.coastContinentalness,
-                MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[0], this.erosionParameters[1]),
-                weirdness,
-                0.0F,
-                weirdness.max() < 0L ? BiomeKeys.STONY_SHORE : BiomeKeys.RIVER
-            );
-            this.writeBiomeParameters(parameters,
-                parameterRange,
-                parameterRange2,
-                this.nearInlandContinentalness,
-                MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[0], this.erosionParameters[1]),
-                weirdness,
-                0.0F,
-                BiomeKeys.RIVER
-            );
-            this.writeBiomeParameters(parameters,
-                parameterRange,
-                parameterRange2,
-                MultiNoiseUtil.ParameterRange.combine(this.coastContinentalness, this.farInlandContinentalness),
-                MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[2], this.erosionParameters[4]),
-                weirdness,
-                0.0F,
-                BiomeKeys.RIVER
-            );
-          }
-        }
       }
     }
 
@@ -857,55 +771,28 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
     }
   }
 
-  private RegistryKey<Biome> getWetlandType(int temperature, int humidity, MultiNoiseUtil.ParameterRange weirdness) {
-    if (temperature == 0) {
-      return this.getRegularBiome(temperature, humidity, weirdness);
-    } else if (temperature >= 2 && temperature <= 3 && humidity < 3 && CONFIG.has_wisteria_forest) {
-      return NSBiomes.WISTERIA_FOREST;
-    } else if (temperature == 3 && humidity > 2 && CONFIG.has_bamboo_wetlands) {
-      return NSBiomes.BAMBOO_WETLANDS;
-    } else if ((humidity <= 3 || temperature == 4) && CONFIG.has_marsh) {
-      return NSBiomes.MARSH;
-    } else {
-      return BiomeKeys.SWAMP;
-    }
+  private RegistryKey<Biome> getMountainStartBiome(int temperature, int humidity, MultiNoiseUtil.ParameterRange weirdness) {
+    return temperature == 0 ? this.getMountainSlopeBiome(temperature, humidity, weirdness) : this.getRegularBiome(temperature, humidity, weirdness);
   }
 
-  private RegistryKey<Biome> getWetlandType2(int temperature, int humidity, MultiNoiseUtil.ParameterRange weirdness) {
-    if (temperature == 0) {
-      return this.getRegularBiome(temperature, humidity, weirdness);
-    } else if (temperature == 3 && humidity < 3 && CONFIG.has_wisteria_forest) {
-      return NSBiomes.WISTERIA_FOREST;
-    } else if (temperature == 2 && CONFIG.has_sugi_forest) {
-      return NSBiomes.SUGI_FOREST;
-    } else if (temperature == 3 && humidity > 2 && CONFIG.has_bamboo_wetlands) {
-      return NSBiomes.BAMBOO_WETLANDS;
-    } else if ((humidity <= 3 || temperature == 4) && CONFIG.has_marsh) {
-      return NSBiomes.MARSH;
+  private RegistryKey<Biome> getBiomeOrWindsweptSavanna(int temperature, int humidity, MultiNoiseUtil.ParameterRange weirdness, RegistryKey<Biome> biomeKey) {
+    return temperature > 1 && humidity < 4 && weirdness.max() >= 0L ? BiomeKeys.WINDSWEPT_SAVANNA : biomeKey;
+  }
+
+  private RegistryKey<Biome> getWoodedDrylandsOrRegularBiome(int temperature, int humidity, MultiNoiseUtil.ParameterRange weirdness) {
+    return temperature == 4 && CONFIG.has_wooded_drylands ? NSBiomes.WOODED_DRYLANDS : this.getRegularBiome(temperature, humidity, weirdness);
+  }
+
+  private RegistryKey<Biome> getBadlandsBiome(int humidity, MultiNoiseUtil.ParameterRange weirdness) {
+    if (humidity < 2) {
+      return weirdness.max() < 0L ? BiomeKeys.BADLANDS : BiomeKeys.ERODED_BADLANDS;
     } else {
-      return BiomeKeys.SWAMP;
+      return humidity < 3 ? BiomeKeys.BADLANDS : BiomeKeys.WOODED_BADLANDS;
     }
   }
 
   private RegistryKey<Biome> getBadlandsOrRegularBiome(int temperature, int humidity, MultiNoiseUtil.ParameterRange weirdness) {
-    return temperature == 4 ? this.getBadlandsBiome(humidity, weirdness) : (temperature == 1 ? this.getSteppeBiome(temperature, humidity, weirdness) : this.getRegularBiome(
-        temperature,
-        humidity,
-        weirdness
-    ));
-  }
-
-  private RegistryKey<Biome> getMountainStartBiome(int temperature, int humidity, MultiNoiseUtil.ParameterRange weirdness) {
-    return temperature == 0 ? this.getMountainSlopeBiome(temperature, humidity, weirdness) : this.getBadlandsOrRegularBiome(temperature, humidity, weirdness);
-  }
-
-  private RegistryKey<Biome> getBiomeOrWindsweptSavanna(int temperature, int humidity, MultiNoiseUtil.ParameterRange weirdness, RegistryKey<Biome> biomeKey) {
-    if (temperature == 2 && humidity < 4 && CONFIG.has_sugi_forest) {
-      return weirdness.max() >= 0L ? NSBiomes.WINDSWEPT_SUGI_FOREST : biomeKey;
-    } else if (temperature == 3 && humidity < 4 && CONFIG.has_floral_ridges) {
-      return weirdness.max() >= 0L ? NSBiomes.FLORAL_RIDGES : biomeKey;
-    }
-    return temperature > 1 && humidity < 4 && weirdness.max() >= 0L ? BiomeKeys.WINDSWEPT_SAVANNA : biomeKey;
+    return temperature == 4 ? this.getBadlandsBiome(humidity, weirdness) : this.getRegularBiome(temperature, humidity, weirdness);
   }
 
   private RegistryKey<Biome> getErodedShoreBiome(int temperature, int humidity, MultiNoiseUtil.ParameterRange weirdness) {
@@ -919,27 +806,7 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
     } else if (temperature == 3 && CONFIG.has_tropical_shores) {
       return NSBiomes.TROPICAL_SHORES;
     } else {
-      return temperature == 4 ? BiomeKeys.DESERT : BiomeKeys.BEACH;
-    }
-  }
-
-  private RegistryKey<Biome> getBadlandsBiome(int humidity, MultiNoiseUtil.ParameterRange weirdness) {
-    if (humidity < 2) {
-      return weirdness.max() < 0L ? BiomeKeys.BADLANDS : BiomeKeys.ERODED_BADLANDS;
-    } else {
-      return humidity < 3 ? BiomeKeys.BADLANDS : BiomeKeys.WOODED_BADLANDS;
-    }
-  }
-
-  private RegistryKey<Biome> getSteppeBiome(int temperature, int humidity, MultiNoiseUtil.ParameterRange weirdness) {
-    if (temperature >= 3 && humidity < 3 && CONFIG.has_arid_highlands) {
-      return NSBiomes.ARID_HIGHLANDS;
-    } else {
-      return humidity < 4 && CONFIG.has_shrubby_highlands ? NSBiomes.SHRUBBY_HIGHLANDS : (CONFIG.has_woody_highlands ? NSBiomes.WOODY_HIGHLANDS : this.getRegularBiome(
-          temperature,
-          humidity,
-          weirdness
-      ));
+      return temperature == 4 ? (CONFIG.has_drylands ? NSBiomes.DRYLANDS : (BiomeKeys.DESERT)) : BiomeKeys.BEACH;
     }
   }
 
@@ -955,22 +822,16 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
   }
 
   private RegistryKey<Biome> getPeakBiome(int temperature, int humidity, MultiNoiseUtil.ParameterRange weirdness) {
-    if (temperature == 1 && CONFIG.has_snowcapped_red_peaks) {
-      return NSBiomes.SNOWCAPPED_RED_PEAKS;
-    }
     if (temperature <= 2) {
       return weirdness.max() < 0L ? BiomeKeys.JAGGED_PEAKS : BiomeKeys.FROZEN_PEAKS;
     } else {
-      return temperature == 3 ? BiomeKeys.STONY_PEAKS : this.getBadlandsBiome(humidity, weirdness);
+      return BiomeKeys.STONY_PEAKS;
     }
   }
 
   private RegistryKey<Biome> getMountainSlopeBiome(int temperature, int humidity, MultiNoiseUtil.ParameterRange weirdness) {
     if (temperature >= 3) {
       return this.getNearMountainBiome(temperature, humidity, weirdness);
-    }
-    if (temperature == 1 && CONFIG.has_sleeted_slopes) {
-      return NSBiomes.SLEETED_SLOPES;
     } else {
       return humidity <= 1 ? BiomeKeys.SNOWY_SLOPES : BiomeKeys.GROVE;
     }
@@ -984,13 +845,9 @@ public class TerraSolarisParameters extends VanillaBiomeParameters {
   private void writeBiomeParameters(Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> parameters, MultiNoiseUtil.ParameterRange temperature,
       MultiNoiseUtil.ParameterRange humidity, MultiNoiseUtil.ParameterRange continentalness, MultiNoiseUtil.ParameterRange erosion, MultiNoiseUtil.ParameterRange weirdness,
       float offset, RegistryKey<Biome> biome) {
-    parameters.accept(Pair.of(
-        MultiNoiseUtil.createNoiseHypercube(temperature, humidity, continentalness, erosion, MultiNoiseUtil.ParameterRange.of(0.0F), weirdness, offset),
-        biome
-    ));
-    parameters.accept(Pair.of(
-        MultiNoiseUtil.createNoiseHypercube(temperature, humidity, continentalness, erosion, MultiNoiseUtil.ParameterRange.of(1.0F), weirdness, offset),
-        biome
-    ));
+    parameters.accept(
+        Pair.of(MultiNoiseUtil.createNoiseHypercube(temperature, humidity, continentalness, erosion, MultiNoiseUtil.ParameterRange.of(0.0F), weirdness, offset), biome));
+    parameters.accept(
+        Pair.of(MultiNoiseUtil.createNoiseHypercube(temperature, humidity, continentalness, erosion, MultiNoiseUtil.ParameterRange.of(1.0F), weirdness, offset), biome));
   }
 }

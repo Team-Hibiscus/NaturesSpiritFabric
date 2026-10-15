@@ -1,4 +1,4 @@
-package net.hibiscus.naturespirit.terrablender;
+package net.hibiscus.naturespirit.compat.terrablender;
 
 import net.hibiscus.naturespirit.NatureSpirit;
 import net.hibiscus.naturespirit.config.NSConfig;

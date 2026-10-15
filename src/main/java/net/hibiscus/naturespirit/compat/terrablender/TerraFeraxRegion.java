@@ -1,6 +1,7 @@
-package net.hibiscus.naturespirit.terrablender;
+package net.hibiscus.naturespirit.compat.terrablender;
 
 import com.mojang.datafixers.util.Pair;
+import net.hibiscus.naturespirit.world.paramaters.TerraFeraxParameters;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;

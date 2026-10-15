@@ -1,6 +1,7 @@
-package net.hibiscus.naturespirit.terrablender;
+package net.hibiscus.naturespirit.compat.terrablender;
 
 import com.mojang.datafixers.util.Pair;
+import net.hibiscus.naturespirit.world.paramaters.TerraSolarisParameters;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
@@ -11,15 +12,14 @@ import terrablender.api.RegionType;
 
 import java.util.function.Consumer;
 
-public class TerraFlavaRegion extends Region {
+public class TerraSolarisRegion extends Region {
 
-  public TerraFlavaRegion(Identifier name, int weight) {
+  public TerraSolarisRegion(Identifier name, int weight) {
     super(name, RegionType.OVERWORLD, weight);
   }
 
   @Override
   public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
-    (new TerraFlavaParameters()).writeOverworldBiomeParameters(mapper);
+    (new TerraSolarisParameters()).writeOverworldBiomeParameters(mapper);
   }
-
 }

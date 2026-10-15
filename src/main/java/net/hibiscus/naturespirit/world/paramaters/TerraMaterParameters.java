@@ -1,4 +1,4 @@
-package net.hibiscus.naturespirit.terrablender;
+package net.hibiscus.naturespirit.world.paramaters;
 
 import com.mojang.datafixers.util.Pair;
 import net.hibiscus.naturespirit.registration.NSBiomes;
@@ -141,7 +141,7 @@ public class TerraMaterParameters extends VanillaBiomeParameters {
     };
   }
 
-  protected void writeOverworldBiomeParameters(Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> parameters) {
+  public void writeOverworldBiomeParameters(Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> parameters) {
     this.writeOceanBiomes(parameters);
     this.writeLandBiomes(parameters);
     this.writeCaveBiomes(parameters);

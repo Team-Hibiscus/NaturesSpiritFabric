@@ -146,9 +146,9 @@ public class NSWorldGen {
   }
 
   public static void registerWorldGen() {
-    BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DESERT), GenerationStep.Feature.VEGETAL_DECORATION, NSPlacedFeatures.PATCH_SCORCHED_GRASS_PLACED);
-    BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DESERT), GenerationStep.Feature.VEGETAL_DECORATION, NSPlacedFeatures.PATCH_TALL_SCORCHED_GRASS_PLACED);
-    BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DESERT), GenerationStep.Feature.VEGETAL_DECORATION, NSPlacedFeatures.ROOTED_DESERT_TURNIP);
+//    BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DESERT), GenerationStep.Feature.VEGETAL_DECORATION, NSPlacedFeatures.PATCH_SCORCHED_GRASS_PLACED);
+//    BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DESERT), GenerationStep.Feature.VEGETAL_DECORATION, NSPlacedFeatures.PATCH_TALL_SCORCHED_GRASS_PLACED);
+//    BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DESERT), GenerationStep.Feature.VEGETAL_DECORATION, NSPlacedFeatures.ROOTED_DESERT_TURNIP);
   }
 
 }

@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.14-SNAPSHOT'
+    id 'fabric-loom' version '1.17-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -14,6 +14,18 @@ repositories {
     // for more information about repositories.
     maven { url = 'https://maven.minecraftforge.net/' }
     maven { url = 'https://maven.parchmentmc.org' }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        // forRepositories(fg.repository) // Uncomment when using ForgeGradle
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
 }
 
 dependencies {
@@ -25,7 +37,8 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${project.terrablender_version}"
+    modCompileOnly "com.github.glitchfiend:TerraBlender-fabric:${project.terrablender_version}"
+    modImplementation ("maven.modrinth:XaDC71GB:eN30OQaU")
 
     include implementation("com.electronwill.night-config:toml:${nightconfig_version}")
     include implementation("com.electronwill.night-config:core:${nightconfig_version}")
@@ -100,7 +113,7 @@ java {
 
 jar {
     from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}" }
+        rename { "${it}_${project.archives_base_name}" }
     }
 }
 
